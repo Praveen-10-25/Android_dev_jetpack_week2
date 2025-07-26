@@ -4,28 +4,15 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.ligthon.ui.theme.LigthOnTheme
-import androidx.compose.ui.graphics.Color
-
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,19 +21,22 @@ class MainActivity : ComponentActivity() {
         setContent {
             LigthOnTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                   Ligth(modifier = Modifier.padding(innerPadding))
+                    Ligth(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
     }
+}
 
 @Composable
-fun Ligth(modifier: Modifier=Modifier) {
-    var islightOn by remember {
-        mutableStateOf(false)
-    }
-    val backgroundColor = if (islightOn) Color.White else Color.Black
-    val textcolor = if (islightOn) Color.Black else Color.White
+fun Ligth(modifier: Modifier = Modifier) {
+    // 🔁 This is a Compose state that remembers the light ON/OFF state
+    var isLightOn by remember { mutableStateOf(false) }
+
+    // 🎨 Change colors based on the state
+    val backgroundColor = if (isLightOn) Color.White else Color.Black
+    val textColor = if (isLightOn) Color.Black else Color.White
+
     Surface(
         modifier = Modifier
             .fillMaxSize(),
@@ -55,27 +45,46 @@ fun Ligth(modifier: Modifier=Modifier) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(12.dp)
+                .padding(16.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
+
+            // 📝 Dynamic Text
             Text(
-                text = if (islightOn) "Light is on" else "light is off",
-                style = MaterialTheme.typography.headlineLarge,
-                color = textcolor
+                text = if (isLightOn) "Light is ON" else "Light is OFF",
+                color = textColor,
+                style = MaterialTheme.typography.headlineLarge
             )
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            Button(onClick = { islightOn = !islightOn }) {
-                Text(text = if (islightOn) "Turn Off" else " Turn On")
+            // 🔘 Toggle Switch (Compose version, not Android View)
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "Toggle Light",
+                    color = textColor,
+                    modifier = Modifier.padding(end = 8.dp)
+                )
+                Switch(
+                    checked = isLightOn,
+                    onCheckedChange = { isLightOn = it },
+                    colors = SwitchDefaults.colors(
+                        checkedThumbColor = Color.Yellow,
+                        uncheckedThumbColor = Color.Gray
+                    )
+                )
             }
         }
     }
 }
-    @Preview(showBackground = true)
-    @Composable
-    fun LightPreview(){
-        LigthOnTheme {
-            Ligth()
-        }
+
+@Preview(showBackground = true)
+@Composable
+fun LightPreview() {
+    LigthOnTheme {
+        Ligth()
     }
 }
