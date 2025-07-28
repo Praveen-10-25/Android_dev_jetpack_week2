@@ -20,9 +20,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             LigthOnTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Ligth(modifier = Modifier.padding(innerPadding))
-                }
+                    Ligth(modifier = Modifier.padding(35.dp))
             }
         }
     }
@@ -30,10 +28,8 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Ligth(modifier: Modifier = Modifier) {
-    // 🔁 This is a Compose state that remembers the light ON/OFF state
     var isLightOn by remember { mutableStateOf(false) }
 
-    // 🎨 Change colors based on the state
     val backgroundColor = if (isLightOn) Color.White else Color.Black
     val textColor = if (isLightOn) Color.Black else Color.White
 
@@ -50,7 +46,6 @@ fun Ligth(modifier: Modifier = Modifier) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            // 📝 Dynamic Text
             Text(
                 text = if (isLightOn) "Light is ON" else "Light is OFF",
                 color = textColor,
@@ -58,8 +53,6 @@ fun Ligth(modifier: Modifier = Modifier) {
             )
 
             Spacer(modifier = Modifier.height(24.dp))
-
-            // 🔘 Toggle Switch (Compose version, not Android View)
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
