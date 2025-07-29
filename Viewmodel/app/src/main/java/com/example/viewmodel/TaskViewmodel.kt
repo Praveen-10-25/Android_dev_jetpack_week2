@@ -1,29 +1,31 @@
 package com.example.viewmodel
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class TaskViewModel : ViewModel() {
-    var task by mutableStateOf("")
-        private set
+   private val _task=MutableLiveData<String>("")
+    val task:LiveData<String> = _task
 
-    var taskList by mutableStateOf(listOf<String>())
-        private set
+    private val _tasklist=MutableLiveData<List<String>>(emptyList())
+    val tasklist:LiveData<List<String>> = _tasklist
 
     fun onTaskChange(newTask: String) {
-        task = newTask
+       _task.value = newTask
     }
 
     fun addTask() {
-        if (task.isNotBlank()) {
-            taskList = taskList + task.trim()
-            task = ""
+        val addedtask=_task.value?.trim()?:""
+        if (addedtask.isNotBlank()) {
+            val updateList=_tasklist.value.orEmpty()+addedtask
+            _tasklist.value=updateList
+            _task.value=""
         }
     }
 
     fun deleteTask(taskToDelete: String) {
-        taskList = taskList.filter { it != taskToDelete }
+       val newlist=_tasklist.value.orEmpty().filter { it!=taskToDelete}
+        _tasklist.value=newlist
     }
 }
