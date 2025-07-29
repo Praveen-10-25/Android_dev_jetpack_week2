@@ -23,7 +23,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 
-@JvmOverloads
 @Composable
 fun LoginScreen(viewModel:LoginViewModel= viewModel()) {
 
