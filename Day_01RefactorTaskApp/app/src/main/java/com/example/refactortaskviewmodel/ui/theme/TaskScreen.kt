@@ -12,9 +12,13 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.refactortaskviewmodel.viewModel.TaskViewModel
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import android.widget.Toast
+import androidx.compose.ui.platform.LocalContext
+
 
 @Composable
 fun TaskScreen(viewModel: TaskViewModel = viewModel()) {
+    val context = LocalContext.current
     val taskList by viewModel.tasks.observeAsState(emptyList())
     var newTask by remember { mutableStateOf("") }
 
@@ -34,8 +38,12 @@ fun TaskScreen(viewModel: TaskViewModel = viewModel()) {
 
         Button(
             onClick = {
-                viewModel.addTask(newTask)
-                newTask = ""
+                if (newTask.isBlank()) {
+                    Toast.makeText(context, "Please enter a task", Toast.LENGTH_SHORT).show()
+                } else {
+                    viewModel.addTask(newTask)
+                    newTask = ""
+                }
             },
             modifier = Modifier.fillMaxWidth()
         ) {
