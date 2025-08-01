@@ -1,5 +1,6 @@
 package com.example.statehoisting.ui.theme
 
+import android.content.Context
 import android.util.Patterns
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
@@ -111,7 +112,8 @@ fun SignUp_page(
                         formError = "All fields are required"
                     } else if (!emailError && !confirmPassError) {
                         formError = ""
-                        val sharedPref = context.getSharedPreferences("user_data", android.content.Context.MODE_PRIVATE)
+                        val sharedPref = context.getSharedPreferences("user_data", Context.MODE_PRIVATE)
+
                         with(sharedPref.edit()) {
                             putString("email", email)
                             putString("password", password)

@@ -78,12 +78,10 @@ fun Login_page(
                         val savedPassword = sharedPref.getString("password", "") ?: ""
 
                         if (email == savedEmail && password == savedPassword) {
-                            Toast.makeText(context, "Login successful!", Toast.LENGTH_SHORT).show()
-                            navController.navigate("home") {
-                                popUpTo("login") { inclusive = true }
-                            }
+                            Toast.makeText(context, "Login successful!", Toast.LENGTH_SHORT ).show()
+                            navController.navigate("home")
                         } else {
-                            Toast.makeText(context, "Invalid email or password", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "You need To Signup ", Toast.LENGTH_SHORT).show()
                         }
                     },
                     modifier = Modifier.fillMaxWidth()
@@ -98,7 +96,7 @@ fun Login_page(
                     },
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Text("Go to Signup")
+                    Text("Signup")
                 }
             }
         }

@@ -19,15 +19,15 @@ class SignupViewModel: ViewModel() {
     val confirmpass: LiveData<String> = _confirmpass
 
     fun onUpdatename(newname:String){
-        _name.value=newname
+        _name.value=newname.trim()
     }
     fun onUpdateEmail(newEmail:String){
-            _email.value = newEmail
+            _email.value = newEmail.trim()
     }
     fun onUpdatepass(newpass:String){
-        _password.value=newpass
+        _password.value=newpass.trim()
     }
     fun onConfirmPass(confirmpassword:String){
-        _confirmpass.value=confirmpassword
+        _confirmpass.value=confirmpassword.trim()
     }
 }
