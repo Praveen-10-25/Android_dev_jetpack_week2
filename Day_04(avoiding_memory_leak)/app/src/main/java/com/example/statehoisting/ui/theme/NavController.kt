@@ -13,5 +13,6 @@ fun MyApp(){
     ){
         composable("login"){ Login_page(navController) }
         composable("signup") { SignUp_page(navController) }
+        composable("home"){ Home_Page(navController) }
     }
     }

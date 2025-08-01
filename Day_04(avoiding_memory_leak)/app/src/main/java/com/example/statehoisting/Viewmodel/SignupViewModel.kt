@@ -22,9 +22,7 @@ class SignupViewModel: ViewModel() {
         _name.value=newname
     }
     fun onUpdateEmail(newEmail:String){
-        if (android.util.Patterns.EMAIL_ADDRESS.matcher(newEmail).matches()) {
             _email.value = newEmail
-        }
     }
     fun onUpdatepass(newpass:String){
         _password.value=newpass
