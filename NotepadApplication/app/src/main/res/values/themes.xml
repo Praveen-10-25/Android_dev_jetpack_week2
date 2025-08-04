@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+<<<<<<< HEAD
     <style name="Theme.NotepadApp" parent="android:Theme.Material.Light.NoActionBar" />
+=======
+    <style name="Theme.NotepadApplication" parent="android:Theme.Material.Light.NoActionBar" />
+>>>>>>> 85c3125 (Added Updated Files:)
 </resources>

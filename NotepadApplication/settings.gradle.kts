@@ -19,6 +19,11 @@ dependencyResolutionManagement {
     }
 }
 
+<<<<<<< HEAD
 rootProject.name = "NotepadApp"
 include(":app")
  
+=======
+rootProject.name = "NotepadApplication"
+include(":app")
+>>>>>>> 85c3125 (Added Updated Files:)

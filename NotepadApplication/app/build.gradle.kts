@@ -5,11 +5,19 @@ plugins {
 }
 
 android {
+<<<<<<< HEAD
     namespace = "com.example.notepadapp"
     compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.notepadapp"
+=======
+    namespace = "com.example.notepadapplication"
+    compileSdk = 36
+
+    defaultConfig {
+        applicationId = "com.example.notepadapplication"
+>>>>>>> 85c3125 (Added Updated Files:)
         minSdk = 24
         targetSdk = 36
         versionCode = 1

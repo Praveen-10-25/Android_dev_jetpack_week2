@@ -1,3 +1,7 @@
 <resources>
+<<<<<<< HEAD
     <string name="app_name">NotepadApp</string>
+=======
+    <string name="app_name">NotepadApplication</string>
+>>>>>>> 85c3125 (Added Updated Files:)
 </resources>
